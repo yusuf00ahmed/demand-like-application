@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <!-- Head section of website-->
+    <title></title>
+</head>
+ 
+<body>
+    <!-- Body section of website -->
+</body>
+ 
+</html>
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>Simple Web Page</title>
+</head>
+ 
+<body>
+    <h1>Welcome to GeeksforGeeks</h1>
+    <p>A computer science portal for geeks</p>
+</body>
+ 
+</html>
+function addTask(task) {
+   
+  return {
+     
+    type: 'ADD_TODO',
+    task: task
+  }
+}
+ 
+function removeTask(task) {
+  
+  return {
+    type: 'REMOVE_TODO',
+    task: task
+  }
+}
+function task(tasks = [], action) {
+   
+  if (action.type === 'ADD_TODO') {
+    return [...tasks, action.task];
+  } else if (action.type === 'REMOVE_TODO') {
+      return tasks.filter(task => task !== action.task);
+    }
+  return tasks;
+}
+import { createStore } from 'Redux';
+ 
+// Creating store
+const store = createStore(taskList);
+ 
+// Here add is action as you can see console,
+// its an object with some info
+const add = addTask('Wake up');
+console.log(add);
+ 
+// Dispatch usually trigger reducer and perform task
+store.dispatch(add);
+ 
+// getState() function is used to get current state
+console.log(store.getState());
+ 
+store.dispatch(addTask('Study'));
+store.dispatch(addTask('Eat'));
+store.dispatch(addTask('Go to sleep'));
+store.dispatch(removeTask('Eat'));
+store.dispatch(addTask('Work'));
+store.dispatch(addTask('Sleep'));
+store.dispatch(removeTask('Sleep'));
+ 
+console.log(store.getState());
